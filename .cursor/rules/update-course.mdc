@@ -1,0 +1,16 @@
+---
+description: Keep the course textbook current with every topic we discuss
+alwaysApply: true
+---
+
+# Update the course
+
+`docs/COURSE.md` is the textbook for this project: general web development, full-stack development, and agentic AI, with the banking assistant as the lab.
+
+When a conversation teaches, decides, or corrects something in those subjects:
+
+- Refine the existing chapter that owns the topic. Add a chapter only when the topic is new.
+- Add one row to Appendix E, Refinements, naming the topic and what the course now says.
+- Keep the bank lab and the general lesson distinct. State the general idea first, then where this project uses it.
+- The project front end is React. `app/static/index.html` is the browser-primitives lab until a React app replaces it. Do not describe the HTML file as the final UI.
+- Do not rewrite application code as part of a documentation update unless the user asks for the code change.
