@@ -1,0 +1,18 @@
+services:
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: unless-stopped
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      OLLAMA_URL: http://ollama:11434/api/chat
+    depends_on:
+      - ollama
+
+volumes:
+  ollama-models:
