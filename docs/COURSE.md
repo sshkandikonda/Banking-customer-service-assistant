@@ -1108,6 +1108,19 @@ INFO:     127.0.0.1:63407 - "GET / HTTP/1.1" 200 OK
 
 That's the client address, the method, the path, the protocol, and the status. Logs are your first debugging tool. In Step 12 they grow into full observability: traces of every agent and tool call.
 
+### 9.5 Checks before merge
+
+GitHub runs `.github/workflows/checks.yml` on every pull request. Two jobs must pass before the branch is treated as ready:
+
+| Check | Tool | What it looks for |
+|---|---|---|
+| lint | Ruff | Python mistakes such as a name that was never imported |
+| sast | Bandit | Common security mistakes in the Python, at medium severity and above |
+
+SAST means static application security testing: reading the code without running the chat. Bandit is the small version of that. It does not replace a human review, and it does not look at the model prompt.
+
+The workflow file has to be on the branch before GitHub can run it. In the repository settings, under branch protection for `main`, require the `lint` and `sast` checks. Until that setting is on, the checks run and show green or red, but GitHub still lets you merge a red result.
+
 ---
 
 ## Chapter 10. Step 1 in review
@@ -1338,3 +1351,4 @@ This log is part of the course. When a conversation clarifies or extends a topic
 | Course shape | General course, one lab | This file teaches web development, full-stack development, and agentic AI. The bank assistant is the lab, not the whole subject. |
 | Front end | React | The project UI is React. `index.html` remains the browser-primitives lab until the React app is built. The API contract does not change. |
 | How to study | Pace | Finish the three remaining Step 1 checks and one deliberate break (a 400 or a 503) before React or Step 2. Predict the result before each send. |
+| Pull request checks | Lint and SAST | GitHub Actions runs Ruff and Bandit on a pull request. Require those two checks in branch protection before `main` can merge. |
