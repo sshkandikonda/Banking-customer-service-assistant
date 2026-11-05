@@ -8,9 +8,9 @@ Business problem this system is for: about 4.2 lakh calls a month, 65% of them t
 
 | Status | Steps |
 |---|---|
-| Completed | 1 |
-| In progress | None. Step 1 already runs in Docker. Pulling `qwen2.5:7b` into the Compose volume is a setup task, not a new step. |
-| Yet to start | 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 |
+| Completed | 1, 2 |
+| In progress | None |
+| Yet to start | 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 |
 
 ---
 
@@ -36,7 +36,7 @@ This can chat. It cannot see an account, it does not know who is talking, and it
 
 ## Step 2: Bank APIs as tools
 
-**Status: Yet to start.**
+**Status: Completed.** One agent holds all six tools. The page sends a demo `customer_id`. The tools use that id, not an id invented by the model. The records are in `data/bank.json`.
 
 ```mermaid
 flowchart TB
@@ -415,7 +415,7 @@ Steps 1–8 and 10–14 follow the diagrams. Step 9 is the missing number: it is
 | Step | Status | What was added | Why |
 |---|---|---|---|
 | 1 | Completed | UI → API → Agent → LLM | A chat demo, now started with Docker Compose |
-| 2 | Yet to start | Bank internal APIs as tools on one agent | The bot can answer with real account data |
+| 2 | Completed | Bank internal APIs as tools on one agent | The bot can answer with the fake bank's data |
 | 3 | Yet to start | Accounts, Transaction, and Service agents | Each agent only gets its own tools |
 | 4 | Yet to start | Coordinator Agent | One question can need more than one agent |
 | 5 | Yet to start | Accounts, Transactions, and Service MCP servers | Agents and bank APIs change independently |

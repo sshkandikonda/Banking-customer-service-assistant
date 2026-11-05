@@ -50,7 +50,7 @@ The bank is one application of this syllabus. A tutor, a support bot, or an inte
 | The browser | HTML, the DOM, events, `fetch`, trusted rendering | Chapter 8 | Built in `app/static/index.html` |
 | A component UI | React state, effects, and the same `/chat` contract | Chapter 8B | Decided. Not built yet. |
 | Running it | Processes, acceptance tests, reading logs | Chapter 9 and `README.md` | Compose starts both containers. The page returned `GET /` 200. The model still has to be pulled into the volume. |
-| Data and tools | Functions the model may request | Step 2, Part III | Upcoming |
+| Data and tools | Functions the model may request | Step 2, `app/bank.py` and `app/agent.py` | Built. One agent, six tools, fake customers in `data/bank.json`. |
 | Structure | Several agents, a coordinator, MCP | Steps 3–5 | Upcoming |
 | Identity | Authentication versus authorisation | Steps 6–7 | Upcoming |
 | Memory | Sessions, what may be stored, PII | Steps 8–10 | Upcoming |
@@ -1163,6 +1163,24 @@ If you can rebuild these four pieces from a blank folder without notes, you've m
 
 ---
 
+## Chapter 11. Step 2 in the code
+
+Step 2 adds a loop. The model can answer in text, or it can ask for a tool. Your code runs the tool and sends the result back. The model then writes the reply the customer sees.
+
+The six tools live in `app/bank.py` and read `data/bank.json`. `app/agent.py` sends their names and argument shapes to Ollama, then runs at most four rounds.
+
+The page has a demo-customer menu. That id goes in the `POST /chat` body. Every tool is called as `tool(customer_id=that id, ...)`. If the model adds its own `customer_id`, the agent deletes it before the call. A prompt cannot switch the lookup to another customer. Step 6 replaces the menu with a real login. Until then, the menu is the stand-in.
+
+A cheque book or address change is written into `data/bank.json`. Rebuilding the API image starts again from the file in the repository.
+
+### Check your understanding
+
+1. Who chooses the customer id, the model or the API?
+2. What is appended to the conversation after a tool runs?
+3. Why does one agent holding every tool, including writes, become a problem in Step 3?
+
+---
+
 # Part III: The road ahead
 
 Each step below gets its own chapter as you build it. Read [`ARCHITECTURE.md`](ARCHITECTURE.md) for the diagrams.
@@ -1352,3 +1370,4 @@ This log is part of the course. When a conversation clarifies or extends a topic
 | Front end | React | The project UI is React. `index.html` remains the browser-primitives lab until the React app is built. The API contract does not change. |
 | How to study | Pace | Finish the three remaining Step 1 checks and one deliberate break (a 400 or a 503) before React or Step 2. Predict the result before each send. |
 | Pull request checks | Lint and SAST | GitHub Actions runs Ruff and Bandit on a pull request. Require those two checks in branch protection before `main` can merge. |
+| Step 2 | Tools | One agent calls six functions in `app/bank.py`. The demo customer id comes from the page, and the agent drops a customer id invented by the model. |

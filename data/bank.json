@@ -1,0 +1,79 @@
+{
+  "customers": [
+    {
+      "id": "cust_101",
+      "name": "Priya Shah",
+      "kyc_status": "verified",
+      "address": "14 MG Road, Pune",
+      "accounts": [
+        {
+          "ref": "acc_1",
+          "type": "savings",
+          "balance": 84250.75,
+          "transactions": [
+            {"id": "t1", "date": "2026-10-20", "description": "UPI Swiggy", "amount": -640.0},
+            {"id": "t2", "date": "2026-10-18", "description": "Salary credit", "amount": 75000.0},
+            {"id": "t3", "date": "2026-10-12", "description": "ATM withdrawal", "amount": -2000.0},
+            {"id": "t4", "date": "2026-10-08", "description": "NEFT rent", "amount": -15000.0},
+            {"id": "t5", "date": "2026-10-02", "description": "UPI coffee", "amount": -180.0}
+          ]
+        }
+      ],
+      "cheque_books": []
+    },
+    {
+      "id": "cust_102",
+      "name": "Rohan Iyer",
+      "kyc_status": "verified",
+      "address": "8 Residency Road, Bengaluru",
+      "accounts": [
+        {
+          "ref": "acc_2",
+          "type": "savings",
+          "balance": 12000.0,
+          "transactions": [
+            {"id": "t6", "date": "2026-10-19", "description": "UPI groceries", "amount": -2300.0},
+            {"id": "t7", "date": "2026-10-15", "description": "Interest credit", "amount": 85.0},
+            {"id": "t8", "date": "2026-10-11", "description": "ATM withdrawal", "amount": -1000.0},
+            {"id": "t9", "date": "2026-10-06", "description": "UPI electricity", "amount": -1450.0},
+            {"id": "t10", "date": "2026-10-01", "description": "Transfer from current", "amount": 5000.0}
+          ]
+        },
+        {
+          "ref": "acc_3",
+          "type": "current",
+          "balance": 340500.25,
+          "transactions": [
+            {"id": "t11", "date": "2026-10-21", "description": "Client payment", "amount": 80000.0},
+            {"id": "t12", "date": "2026-10-17", "description": "Vendor NEFT", "amount": -25000.0},
+            {"id": "t13", "date": "2026-10-13", "description": "GST payment", "amount": -12000.0},
+            {"id": "t14", "date": "2026-10-09", "description": "UPI office supplies", "amount": -3200.0},
+            {"id": "t15", "date": "2026-10-03", "description": "Transfer to savings", "amount": -5000.0}
+          ]
+        }
+      ],
+      "cheque_books": []
+    },
+    {
+      "id": "cust_103",
+      "name": "Meera Nair",
+      "kyc_status": "pending",
+      "address": "22 Beach Road, Kochi",
+      "accounts": [
+        {
+          "ref": "acc_4",
+          "type": "savings",
+          "balance": 5600.4,
+          "transactions": [
+            {"id": "t16", "date": "2026-10-22", "description": "UPI unknown merchant", "amount": -890.0},
+            {"id": "t17", "date": "2026-10-16", "description": "Salary credit", "amount": 42000.0},
+            {"id": "t18", "date": "2026-10-14", "description": "Rent NEFT", "amount": -18000.0},
+            {"id": "t19", "date": "2026-10-07", "description": "UPI pharmacy", "amount": -560.0},
+            {"id": "t20", "date": "2026-10-04", "description": "ATM withdrawal", "amount": -3000.0}
+          ]
+        }
+      ],
+      "cheque_books": []
+    }
+  ]
+}

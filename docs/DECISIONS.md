@@ -39,15 +39,9 @@ Each account has a balance, five transactions, and a registered address. Cheque-
 
 Login is a name on the fake login screen. That name selects the customer id. There is no real identity provider.
 
-## 4. First three intents
+## 4. Tools in Step 2
 
-Only these, until the milestones that need them are done:
-
-1. Balance enquiry
-2. Debit explanation (transaction details)
-3. Cheque book request
-
-Statement, change of address, KYC update, and increase credit card limit stay out until the three above work through the coordinator.
+One agent can call all six tools from the Step 2 diagram: balance enquiry, transaction details, statement request, change of address, cheque book request, and KYC update. The practice questions are still balance, a debit explanation, and a cheque book. There is no login yet. The page selects one of the three demo customers, and the API passes that id into every tool.
 
 ## What this build uses
 

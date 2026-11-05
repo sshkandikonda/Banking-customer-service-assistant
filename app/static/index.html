@@ -5,8 +5,16 @@
         <title>Bank assistant</title>
     </head>
     <body>
-    <h1>Bank assistant</h1>
-    <ul id="messages"></ul>
+  <h1>Bank assistant</h1>
+  <label>
+    Demo customer
+    <select id="customer">
+      <option value="cust_101">Priya Shah</option>
+      <option value="cust_102">Rohan Iyer</option>
+      <option value="cust_103">Meera Nair</option>
+    </select>
+  </label>
+  <ul id="messages"></ul>
     <form id="chat">
         <input id="box" type="text" autocomplete="off" placeholder="Type a message">
         <button type="submit">Send</button>
@@ -17,6 +25,7 @@
         const list = document.querySelector("#messages");
         const form = document.querySelector("#chat");
         const box = document.querySelector("#box");
+        const customer = document.querySelector("#customer");
         const button = form.querySelector("button");
 
         function addLine(text) {
@@ -39,7 +48,7 @@
             const response = await fetch("/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ messages }),
+            body: JSON.stringify({ messages, customer_id: customer.value }),
             });
             const body = await response.json();
             if (!response.ok) {

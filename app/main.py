@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from app.agent import ModelUnvavailable, reply
+from app.bank import list_customer_ids
 
 app = FastAPI()
 
@@ -18,6 +19,7 @@ class ChatMessage(BaseModel):
 class ChatRequest(BaseModel):
     # The POST /chat body. FastAPI turns the JSON into this object.
     messages: list[ChatMessage]
+    customer_id: str
 
 
 class ChatResponse(BaseModel):
@@ -36,14 +38,20 @@ def validate_messages(messages: list[ChatMessage]) -> None:
     if messages[-1].role != "user":
         raise HTTPException(status_code=400, detail="The last message must be from the user.")
 
+
+def validate_customer(customer_id: str) -> None:
+    if customer_id not in list_customer_ids():
+        raise HTTPException(status_code=400, detail="Choose a demo customer.")
+
 @app.post("/chat")
 def chat(body: ChatRequest) -> ChatResponse:
     # body is the parsed JSON. Validation failures become HTTP 400.
     validate_messages(body.messages)
+    validate_customer(body.customer_id)
     # reply expects plain dicts, not ChatMessage objects.
     messages = [{"role": message.role, "content": message.content} for message in body.messages]
     try:
-        reply_text = reply(messages)
+        reply_text = reply(messages, body.customer_id)
     except ModelUnvavailable as exception:
         # Ollama is down, the model is missing, or the reply was empty.
         raise HTTPException(status_code=503, detail=str(exception))
